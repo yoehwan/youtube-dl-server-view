@@ -12,9 +12,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FluentApp(
-      title: 'Youtube-Dl Server Inspect',
-      theme: ThemeData(),
-      home: const HomeView(),
+    debugShowCheckedModeBanner: false,
+    title: 'Youtube-Dl Server Inspect',
+    theme: ThemeData(
+    focusTheme: FocusThemeData(),
+    typography: Typography(),
+    ),
+    home: HomeView(),
     );
   }
 }
