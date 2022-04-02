@@ -1,9 +1,11 @@
 import 'package:fluent_ui/fluent_ui.dart';
+import 'package:youtube_dl_server_view/controller/controller.dart';
 
-import 'views/home_view.dart';
+import 'view/home_view.dart';
 
 void main() {
   runApp(const MyApp());
+  initControllers();
 }
 
 class MyApp extends StatelessWidget {
@@ -12,13 +14,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FluentApp(
-    debugShowCheckedModeBanner: false,
-    title: 'Youtube-Dl Server Inspect',
-    theme: ThemeData(
-    focusTheme: FocusThemeData(),
-    typography: Typography(),
-    ),
-    home: HomeView(),
+      debugShowCheckedModeBanner: false,
+      title: 'Youtube-Dl Server',
+      theme: ThemeData(),
+      home: HomeView(),
     );
   }
 }
