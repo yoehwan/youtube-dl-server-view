@@ -22,7 +22,6 @@ class ConfigController extends GetxController {
     await updateConfig();
     _loading = false;
     updateConfigView();
-
   }
 
   Future updateConfig() async {
@@ -34,7 +33,6 @@ class ConfigController extends GetxController {
       config = _res;
     }
   }
-
   /// updateView
 
   final String configViewID = "configViewID";

@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
 
-class Service with DioMixin{
+class Service  extends DioMixin{
 
 }

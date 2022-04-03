@@ -17,10 +17,6 @@ class _ConfigViewState extends State<ConfigView>
     with AutomaticKeepAliveClientMixin {
   final ConfigViewModel _viewModel = ConfigViewModel();
 
-  void _test() async {
-    final _res = await rootBundle.loadString("server_config.yaml");
-    print(_res);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +24,6 @@ class _ConfigViewState extends State<ConfigView>
     return GetBuilder<ConfigController>(
       id: _viewModel.configViewID,
       builder: (_) {
-
         if (_viewModel.isLoading) return Text("loadong");
         if (_viewModel.configError) return Text("configError");
         return ScaffoldPage(

@@ -1,7 +1,5 @@
 library controller;
 
-import 'package:flutter/scheduler.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:yaml/yaml.dart';
 import 'package:youtube_dl_server_view/repo/config_repo/src/config_impl.dart';

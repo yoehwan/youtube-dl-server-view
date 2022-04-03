@@ -4,8 +4,9 @@ import 'package:youtube_dl_server_view/controller/controller.dart';
 import 'view/home_view.dart';
 
 void main() {
-  runApp(const MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
   initControllers();
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
