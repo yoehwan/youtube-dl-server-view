@@ -1,9 +1,8 @@
-import 'package:fluent_ui/fluent_ui.dart';
 import 'package:youtube_dl_server_view/repo/socket_repo/socket_repo.dart';
 import 'package:youtube_dl_server_view/service/src/socket_service.dart';
 
 class SocketImpl extends SocketRepo {
-  final String baseUrl = "ws://localhost:8444/socket";
+  final String baseUrl = "ws://localhost:9999/socket";
   final SocketService _service = SocketService();
 
   @override
