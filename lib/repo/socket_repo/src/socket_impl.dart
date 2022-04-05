@@ -1,16 +1,13 @@
+import 'package:fluent_ui/fluent_ui.dart';
 import 'package:youtube_dl_server_view/repo/socket_repo/socket_repo.dart';
 import 'package:youtube_dl_server_view/service/src/socket_service.dart';
 
 class SocketImpl extends SocketRepo {
-  final String baseUrl =
-      "wss://demo.piesocket.com/v3/channel_1?api_key=oCdCMcMPQpbvNjUIzqtvF1d2X2okWpDQj4AwARJuAgtjhzKxVEjQU6IdCjwm&notify_self";
+  final String baseUrl = "ws://localhost:8444/socket";
   final SocketService _service = SocketService();
 
   @override
   Stream? get connectStream => _service.stream;
-
-  @override
-  Stream get statusStream => _service.statusStream;
 
   @override
   Future<Stream?> init() async {

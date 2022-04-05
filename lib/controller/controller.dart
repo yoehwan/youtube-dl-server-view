@@ -2,6 +2,7 @@ library controller;
 
 import 'dart:async';
 
+import 'package:fluent_ui/fluent_ui.dart';
 import 'package:get/get.dart';
 import 'package:yaml/yaml.dart';
 import 'package:youtube_dl_server_view/repo/config_repo/src/config_impl.dart';

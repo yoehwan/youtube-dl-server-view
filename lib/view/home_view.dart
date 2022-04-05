@@ -1,6 +1,7 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:get/get.dart';
 import 'package:youtube_dl_server_view/controller/controller.dart';
+import 'package:youtube_dl_server_view/view/src/connect_view/connect_view.dart';
 
 import 'home_view_model.dart';
 import 'src/config_view/config_view.dart';
@@ -31,7 +32,12 @@ class HomeView extends StatelessWidget {
         alignment: Alignment.centerLeft,
         child: Row(
           children: [
-            Text("@@@"),
+            Column(
+              children: [
+                Text("@@@"),
+                ConnectView(),
+              ],
+            ),
             Spacer(),
             Padding(
               padding: const EdgeInsets.all(8.0),
@@ -79,13 +85,14 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<HomeController>(
-        id: _viewModel.navigationViewID,
-        builder: (_) {
-          return NavigationView(
-            appBar: _appBar(),
-            content: _content(),
-            pane: _pane(),
-          );
-        });
+      id: _viewModel.navigationViewID,
+      builder: (_) {
+        return NavigationView(
+          appBar: _appBar(),
+          content: _content(),
+          pane: _pane(),
+        );
+      },
+    );
   }
 }

@@ -1,25 +1,33 @@
 part of controller;
 
-class SocketController extends GetxService{
+class SocketController extends GetxController {
+  static SocketController find() => Get.find<SocketController>();
+
   @override
   void onReady() {
     super.onReady();
     _init();
   }
 
-late  SocketUseCase _useCase;
-  
-  final Completer _compute =  Completer();
-  Future get isConnected=> _compute.future;
+  late SocketUseCase _useCase;
 
-  
-  void _init()async{
+  Stream? get connectStream => _useCase.connectStream;
+
+  bool _loading = true;
+
+  bool get isLoading => _loading;
+
+  void _init() async {
     _useCase = SocketUseCase(SocketImpl());
     await _useCase.initUseCase();
-
-    _compute.isCompleted;
+    _loading = false;
+    updateConnectView();
   }
 
+  /// updateView
+  final String connectViewID = "connectViewID";
 
-
+  void updateConnectView() {
+    update([connectViewID]);
+  }
 }
