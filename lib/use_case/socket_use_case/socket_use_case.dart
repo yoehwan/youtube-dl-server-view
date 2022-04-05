@@ -5,12 +5,11 @@ class SocketUseCase {
 
   final SocketRepo repo;
 
-  Future initUseCase() async {
-    await repo.init();
+  Future<Stream?> initUseCase() async {
+    return await repo.init();
   }
 
-  Future connect()async{
-
+  Stream? connect() {
+    return repo.connect();
   }
-
 }

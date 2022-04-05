@@ -15,10 +15,8 @@ part 'src/config_controller.dart';
 
 part 'src/socket_controller.dart';
 
-void initControllers() async {
-  final _socket = Get.put(SocketController());
-  await _socket.isConnected;
-
+void initControllers() {
+  Get.put(SocketController());
   Get.put(HomeController());
   Get.put(ConfigController());
 }

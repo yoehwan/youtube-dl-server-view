@@ -1,3 +1,4 @@
 abstract class SocketRepo {
-  Future init();
+  Future<Stream?> init();
+  Stream? connect();
 }
