@@ -7,6 +7,12 @@ class SocketImpl extends SocketRepo {
   final SocketService _service = SocketService();
 
   @override
+  Stream? get connectStream => _service.stream;
+
+  @override
+  Stream get statusStream => _service.statusStream;
+
+  @override
   Future<Stream?> init() async {
     return connect();
   }
@@ -15,9 +21,4 @@ class SocketImpl extends SocketRepo {
   Stream? connect() {
     return _service.connectWith(baseUrl);
   }
-
-
-
-
-
 }
