@@ -1,16 +1,23 @@
 import 'package:fluent_ui/fluent_ui.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:youtube_dl_server_view/controller/controller.dart';
 
 import 'connect_view_model.dart';
 
-class ConnectView extends StatelessWidget {
-  ConnectView({Key? key}) : super(key: key);
+class ConnectView extends StatefulWidget {
+  const ConnectView({Key? key}) : super(key: key);
+
+  @override
+  State<ConnectView> createState() => _ConnectViewState();
+}
+
+class _ConnectViewState extends State<ConnectView>
+    with AutomaticKeepAliveClientMixin {
   final ConnectViewModel _viewModel = ConnectViewModel();
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return GetBuilder<SocketController>(
       id: _viewModel.connectViewID,
       builder: (_) {
@@ -27,4 +34,7 @@ class ConnectView extends StatelessWidget {
       },
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }
