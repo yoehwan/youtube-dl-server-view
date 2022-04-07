@@ -30,20 +30,17 @@ class HomeView extends StatelessWidget {
     return NavigationAppBar(
       title: Align(
         alignment: Alignment.centerLeft,
-        child: Row(
-          children: [
-            Column(
-              children: [
-                Text("@@@"),
-                ConnectView(),
-              ],
-            ),
-            Spacer(),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: _themeButton(),
-            ),
-          ],
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: Row(
+            children: [
+              Text("Title"),
+              Spacer(),
+              ConnectView(),
+              SizedBox(width: 16),
+              _themeButton(),
+            ],
+          ),
         ),
       ),
       automaticallyImplyLeading: false,
