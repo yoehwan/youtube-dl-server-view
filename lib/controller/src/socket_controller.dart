@@ -11,17 +11,16 @@ class SocketController extends GetxController {
 
   late SocketUseCase _useCase;
 
-  Stream? get connectStream => _useCase.connectStream;
+  Stream get connectStream => _useCase.connectStream;
 
-  bool _loading = true;
+  final Completer _loading = Completer();
 
-  bool get isLoading => _loading;
+  Future get isLoading => _loading.future;
 
   void _init() async {
     _useCase = SocketUseCase(SocketImpl());
-    await _useCase.initUseCase();
-    _loading = false;
-    updateConnectView();
+    _useCase.initUseCase();
+    _loading.complete();
   }
 
   /// updateView

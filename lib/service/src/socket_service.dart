@@ -1,26 +1,25 @@
 import 'dart:async';
 
+import 'package:fluent_ui/fluent_ui.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
 class SocketService {
   late WebSocketChannel _channel;
 
-  Stream? get stream {
-    try {
-      return _channel.stream;
-    } catch (e) {
-      return null;
-    }
+  final StreamController _connectStream = StreamController.broadcast();
+
+  Stream get stream {
+    return _connectStream.stream;
   }
 
-  Stream? connectWith(String url) {
+  void connectWith(String url) {
     try {
       _channel = WebSocketChannel.connect(
         Uri.parse(url),
       );
-      return _channel.stream;
+      _connectStream.addStream(_channel.stream);
     } catch (e) {
-      return null;
+      throw FlutterError(e.toString());
     }
   }
 

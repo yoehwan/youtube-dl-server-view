@@ -1,7 +1,5 @@
-
 abstract class SocketRepo {
-  Stream? get connectStream;
-  Future<Stream?> init();
-  Stream? connect();
+  Stream get connectStream;
 
+  void connect([String? url]);
 }
