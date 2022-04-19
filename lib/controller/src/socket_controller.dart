@@ -13,6 +13,8 @@ class SocketController extends GetxController {
 
   Stream get connectStream => _useCase.connectStream;
 
+  /// As Possible, Don't make [RxBool] or [bool] and notify View in here
+  /// just use [Completer].
   final Completer _loading = Completer();
 
   Future get isLoading => _loading.future;

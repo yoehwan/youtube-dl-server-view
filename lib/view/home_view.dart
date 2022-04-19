@@ -26,6 +26,7 @@ class HomeView extends StatelessWidget {
         },
       );
     }
+
     return NavigationAppBar(
       title: Align(
         alignment: Alignment.centerLeft,
