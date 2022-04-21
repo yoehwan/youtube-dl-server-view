@@ -1,30 +1,25 @@
+import 'package:fluent_ui/fluent_ui.dart';
 import 'package:youtube_dl_server_view/controller/controller.dart';
 
 class ConnectViewModel {
-  final SocketController _controller = SocketController.find();
+  final SocketController socketController = SocketController.find();
 
-  Future init() async {
-    await _controller.isLoading;
-    _controller.connectStream.listen(onConnected, onDone: onDisconnected);
+  ConnectionState get connectionState => socketController.connectionState;
+
+  bool get isConnected => connectionState == ConnectionState.active;
+
+  void init() {
+    socketController.addConnectionListener(_listener);
   }
 
-  bool _connection = false;
-
-  bool get isConnected => _connection;
-
-  set connection(bool value) {
-    if (_connection == value) return;
-    _connection = value;
-    _controller.updateConnectView();
+  void _listener() {
+    socketController.updateConnectView();
   }
 
-  void onConnected(event) {
-    connection = true;
+  void dispose() {
+    socketController.removeConnectionListener(_listener);
   }
 
-  void onDisconnected() {
-    connection = false;
-  }
 
-  String get connectViewID => _controller.connectViewID;
+  String get connectViewID => socketController.connectViewID;
 }

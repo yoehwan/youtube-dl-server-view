@@ -14,25 +14,29 @@ class ConnectView extends StatefulWidget {
 class _ConnectViewState extends State<ConnectView>
     with AutomaticKeepAliveClientMixin {
   final ConnectViewModel _viewModel = ConnectViewModel();
+  
+  @override
+  void initState(){
+    super.initState();
+    _viewModel.init();
+  }
+  
+  @override
+  void dispose(){
+    _viewModel.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    return FutureBuilder(
-      future: _viewModel.init(),
-      builder: (_, snapshot) {
-        if (snapshot.connectionState == ConnectionState.done) {
-          return GetBuilder<SocketController>(
-            id: _viewModel.connectViewID,
-            builder: (_) {
-              if (_viewModel.isConnected) {
-                return const Icon(FluentIcons.plug_connected);
-              }
-              return const Icon(FluentIcons.plug_disconnected);
-            },
-          );
+    return GetBuilder<SocketController>(
+      id: _viewModel.connectViewID,
+      builder: (_) {
+        if (_viewModel.isConnected) {
+          return const Icon(FluentIcons.plug_connected);
         }
-        return const SizedBox();
+        return const Icon(FluentIcons.plug_disconnected);
       },
     );
   }
