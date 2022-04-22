@@ -15,9 +15,7 @@ class SocketService {
   late WebSocketChannel _channel;
 
   final StreamController _connectStream = StreamController.broadcast();
-
-
-
+  
   Stream get stream {
     return _connectStream.stream;
   }
@@ -28,7 +26,7 @@ class SocketService {
         Uri.parse(url),
       );
       _channel.stream.listen((event) {
-        print(event);
+        // print(event);
       });
       // _connectStream.addStream(_channel.stream);
     } catch (e) {

@@ -9,9 +9,12 @@ class SocketController extends GetxController {
     _init();
   }
 
-  late SocketUseCase _useCase;
+  final SocketUseCase _useCase=SocketUseCase(SocketImpl());
 
-  Stream get connectStream => _useCase.connectStream;
+  final ValueNotifier<ConnectionState> _connectionState =
+      ValueNotifier(ConnectionState.none);
+
+  ConnectionState get connectionState => _connectionState.value;
 
   /// As Possible, Don't make [RxBool] or [bool] and notify View in here
   /// just use [Completer].
@@ -20,9 +23,28 @@ class SocketController extends GetxController {
   Future get isLoading => _loading.future;
 
   void _init() async {
-    _useCase = SocketUseCase(SocketImpl());
     _useCase.initUseCase();
     _loading.complete();
+    _useCase.connectStream.listen(
+      _onDataListener,
+      onDone: _onDoneListener,
+    );
+  }
+
+  void _onDataListener(dynamic data) {
+    _connectionState.value = ConnectionState.active;
+  }
+
+  void _onDoneListener() {
+    _connectionState.value = ConnectionState.done;
+  }
+
+  void addConnectionListener(VoidCallback listener) {
+    _connectionState.addListener(listener);
+  }
+
+  void removeConnectionListener(VoidCallback listener) {
+    _connectionState.removeListener(listener);
   }
 
   /// updateView

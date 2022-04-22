@@ -7,7 +7,7 @@ class SocketUseCase {
 
   Stream get connectStream => repo.connectStream;
 
-  void initUseCase()  {
+  void initUseCase() {
     connect();
   }
 

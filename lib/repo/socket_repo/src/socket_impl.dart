@@ -14,4 +14,5 @@ class SocketImpl extends SocketRepo {
   void connect([String? url]) {
     _service.connectWith(url ?? baseUrl);
   }
+
 }
