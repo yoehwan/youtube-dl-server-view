@@ -5,5 +5,6 @@ class ConfigUseCase {
   ConfigUseCase(this.repo);
 
   final ConfigRepo repo;
+  Future init(){};
 
 }

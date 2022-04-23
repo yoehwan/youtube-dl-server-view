@@ -1,0 +1,8 @@
+library view_model;
+
+abstract class ViewModel{
+
+	void init()
+
+
+}

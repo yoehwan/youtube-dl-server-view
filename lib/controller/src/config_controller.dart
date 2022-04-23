@@ -3,26 +3,33 @@ part of controller;
 class ConfigController extends GetxController {
   static ConfigController find() => Get.find<ConfigController>();
 
-  late ConfigUseCase _useCase;
+  final ConfigUseCase _useCase = ConfigUseCase(ConfigImpl());
 
   @override
-  void onReady(){
+  void onReady() {
     super.onReady();
     init();
   }
 
-  bool _loading = true;
-
-  bool get isLoading => _loading;
+  final Completer _loading = Completer();
+  Future get isLoading => _loading.future;
 
   Future init() async {
-    _useCase = ConfigUseCase(ConfigImpl());
-    _loading = false;
-    updateConfigView();
+    await _useCase.init();
+    _loading.complete();
+  }
+
+  void addConfigListener(VoidCallback listener) {}
+
+  void removeConfigListener(VoidCallback listener) {}
+
+  Future updateConfig(Map<String, dynamic> config) async {}
+
+  Map<String, dynamic> loadConfig() {
+    return {};
   }
 
   /// updateView
-
   final String configViewID = "configViewID";
 
   void updateConfigView() {

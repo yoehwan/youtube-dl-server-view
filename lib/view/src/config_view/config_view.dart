@@ -16,6 +16,20 @@ class _ConfigViewState extends State<ConfigView>
     with AutomaticKeepAliveClientMixin {
   final ConfigViewModel _viewModel = ConfigViewModel();
 
+  @override
+  void initState() {
+    super.initState();
+    _viewModel.init();
+  }
+
+  void dispse() {
+    _viewModel.dispose();
+    super.dispose();
+  }
+
+  Widget _emptyView() {
+    return const Text("emptyView");
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,8 +37,9 @@ class _ConfigViewState extends State<ConfigView>
     return GetBuilder<ConfigController>(
       id: _viewModel.configViewID,
       builder: (_) {
-        if (_viewModel.isLoading) return Text("loadong");
-        if (_viewModel.configError) return Text("configError");
+        if (_viewModel.isEmpty) {
+          return _emptyView();
+        }
         return ScaffoldPage(
           content: YamlTreeView(_viewModel.config),
         );
